@@ -13,8 +13,8 @@ const TodoList = () => {
         <FormAddTodo></FormAddTodo>
         <ul>
             {
-                todos.map((todo) => (
-                    <TodoItem id={todo.id} task={todo.task}></TodoItem>
+                todos.map((todo, key) => (
+                    <TodoItem key={todo.id} id={todo.id} task={todo.task} isDone={todo.isDone}></TodoItem>
                 ))
             }
         </ul>
