@@ -8,8 +8,6 @@ const FormAddTodo = () => {
     const dispatch = useDispatch();
     const onSubmit = (e) => {
       e.preventDefault();
-      console.log(e);
-        console.log('onsubmit');
         dispatch(addTodo({
             task: value
         }))

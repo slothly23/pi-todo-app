@@ -1,7 +1,7 @@
 import { RiDeleteBin2Fill, RiEditFill } from '@remixicon/react'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setIsDone } from '../redux/slice/todo-slice';
+import { deleteTodo, setIsDone } from '../redux/slice/todo-slice';
 
 const TodoItem = ({id, task, isDone}) => {
 
@@ -11,6 +11,10 @@ const TodoItem = ({id, task, isDone}) => {
         dispatch(setIsDone({id: id, isDone: !isDone}))
     }
    
+    const handleDeleteTodo = () => {
+        dispatch(deleteTodo({id: id}))
+    }
+
   return (
     <div className={` bg-violet-800  text-white ${isDone && 'bg-violet-900 text-gray-300 line-through'}`}>
         <div className='flex justify-between items-center 
@@ -31,7 +35,7 @@ const TodoItem = ({id, task, isDone}) => {
                     className='cursor-pointer'
                     size={20}
                 />
-                <RiDeleteBin2Fill 
+                <RiDeleteBin2Fill onClick={() => handleDeleteTodo(id)}
                     className='cursor-pointer'
                     size={20}
                 />

@@ -6,7 +6,7 @@ import TodoItem from './TodoItem';
 const TodoList = () => {
     const {todos} = useSelector((state) => state.todo);
     
-    // console.log(todos);
+    console.log(todos);
   return (
     <div className='container bg-gray-800 mt-20 p-8
     rounded-md'>
