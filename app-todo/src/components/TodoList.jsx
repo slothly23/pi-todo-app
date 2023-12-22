@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import TodoItem from './TodoItem';
 import FormEditTodo from './FormEditTodo';
 import { editTodo } from '../redux/slice/todo-slice';
+import CompleteTodo from './CompleteTodo';
+import ActiveTodo from './ActiveTodo';
 
 const TodoList = () => {
     const {todos} = useSelector((state) => state.todo);
