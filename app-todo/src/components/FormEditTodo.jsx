@@ -1,35 +1,36 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../redux/slice/todo-slice';
+import { editTodo } from '../redux/slice/todo-slice';
 
-const FormAddTodo = () => {
+const FormEditTodo = () => {
     const [value, setValue] = useState('');
 
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
       e.preventDefault()
-        dispatch(addTodo({
+        dispatch(editTodo({
             task: value
         }))
       setValue('')  
     } 
 
+    // console.log(id);
     console.log(value);
    
   return (
     <form onSubmit={handleSubmit} className='mb-4 font-primary w-full'>
         <input type="text" className='outline-none 
         bg-transparent border border-gray-500 p-3 w-[500px] 
-         text-white mb-6 rounded placeholder:text-gray-300' 
-         placeholder='New Todo...' onChange={(e) => setValue(e.target.value)} value={value} />
+         text-white  rounded placeholder:text-gray-300' 
+         placeholder='UPDATE' onChange={(e) => setValue(e.target.value)} value={value} />
 
          <button type='submit' className='bg-gray-600 text-white rounded 
          cursor-pointer p-3 ml-2'>
-            Add Todo
+            Update Todo
          </button>
     </form>
   )
 }
 
-export default FormAddTodo
+export default FormEditTodo

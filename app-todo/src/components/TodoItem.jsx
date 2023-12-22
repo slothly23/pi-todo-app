@@ -1,18 +1,22 @@
 import { RiDeleteBin2Fill, RiEditFill } from '@remixicon/react'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteTodo, setIsDone } from '../redux/slice/todo-slice';
+import { deleteTodo, editTodo, setIsDone } from '../redux/slice/todo-slice';
 
-const TodoItem = ({id, task, isDone}) => {
+const TodoItem = ({id, task, isDone, isEdit}) => {
 
     const dispatch = useDispatch();
 
-    const handleCheckbox = () => {
+    const handleCheckboxClick = () => {
         dispatch(setIsDone({id: id, isDone: !isDone}))
     }
    
     const handleDeleteTodo = () => {
         dispatch(deleteTodo({id: id}))
+    }
+
+    const handleEditTodo = () => {
+        dispatch(editTodo({id: id, isedit: isEdit}))
     }
 
   return (
@@ -24,14 +28,14 @@ const TodoItem = ({id, task, isDone}) => {
                     type="checkbox"
                     className=' mr-2'
                     checked={isDone}  
-                    onChange={(e) => handleCheckbox(e.target.checked)} 
+                    onChange={(e) => handleCheckboxClick(e.target.checked)} 
                 />
 
                 {task}
 
             </span>
             <div className={`flex items-center gap-x-4 ${isDone && 'hidden'}`}>
-                <RiEditFill 
+                <RiEditFill onClick={() => handleEditTodo(id)}
                     className='cursor-pointer'
                     size={20}
                 />
