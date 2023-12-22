@@ -1,43 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FormAddTodo from './FormAddTodo'
-import { useDispatch, useSelector } from 'react-redux'
-import TodoItem from './TodoItem';
-import FormEditTodo from './FormEditTodo';
-import { editTodo } from '../redux/slice/todo-slice';
 import CompleteTodo from './CompleteTodo';
 import ActiveTodo from './ActiveTodo';
+import AllTodo from './AllTodo';
+import { Link, Route, Routes } from 'react-router-dom';
 
 const TodoList = () => {
-    const {todos} = useSelector((state) => state.todo);
+    const [activeIndex, setActiveIndex] = useState(0);
 
-    const dispatch = useDispatch();
-    
-    // const editTask = (task, id) => {
-    //     dispatch(editTodo(
-    //         {
-    //             task: task,
-    //             id: id,
-    //         }
-    //     ))
-    // }
-
-    console.log(todos);
   return (
     <div className='container bg-gray-800 mt-20 p-8
     rounded-md'>
         <FormAddTodo></FormAddTodo>
-        <ul>
-            {
-                todos.map((todo, key) => (
-                    todo.isEdit ? (
-                        <FormEditTodo></FormEditTodo> 
-                    ) : (
 
-                        <TodoItem key={todo.id} id={todo.id} task={todo.task} isDone={todo.isDone} isEdit={todo.isEdit}></TodoItem>
-                    )
-                ))
-            }
-        </ul>
+        <div>
+            <div className='flex gap-2 mb-6'>
+                <Link className={activeIndex === 0 ? "px-4 py-2  text-base rounded-full text-green-600  bg-green-200" : "px-4 py-2  text-base rounded-full text-white bg-none"}
+                    onClick={() => setActiveIndex(0)} to="/">All</Link>
+                <Link className={activeIndex === 1 ? "px-4 py-2  text-base rounded-full text-green-600  bg-green-200" : "px-4 py-2  text-base rounded-full text-white bg-none"}
+                    onClick={() => setActiveIndex(1)}  to="/active">Active</Link>
+                <Link className={activeIndex === 2 ? "px-4 py-2  text-base rounded-full text-green-600  bg-green-200" : "px-4 py-2  text-base rounded-full text-white bg-none"}
+                    onClick={() => setActiveIndex(2)} to="/complete">Complete</Link>
+            </div>
+            <Routes>
+                <Route path="/" element={<AllTodo />}></Route>
+                <Route path="/active" element={<ActiveTodo />}></Route>
+                <Route path="/complete" element={<CompleteTodo />}></Route>
+            </Routes>
+        </div>
+       
     </div>
   )
 }

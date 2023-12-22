@@ -28,26 +28,18 @@ const todoSlice = createSlice({
         },
         deleteTodo(state, action) {
             const todoId = action.payload.id;
-            // console.log(todoId);
+           
             state.todos = state.todos.filter((todo) => 
             todo.id !== todoId)  
         },
         editTodo(state, action) {
             const todoId = action.payload.id;
-            // console.log(action.payload.task);
-            console.log(action.payload.task);
-            console.log(todoId);
-            console.log('dari edit');
+           
             state.todos = state.todos.map(
                 (todo) => todo.id === todoId ? {...todo, isEdit:!todo.isEdit, task: action.payload.task} : todo
             )
-            console.log(state.todos);
         },
-    //     editTodo(state, action) {
-    //         const todoTask = action.payload.task
-    //         console.log(todoTask);
-    //         state.todos = [{...state.todos, task: state.todos[todoTask]}]
-    //     }
+   
     },
 });
 

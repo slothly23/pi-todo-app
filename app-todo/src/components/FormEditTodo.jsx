@@ -14,9 +14,6 @@ const FormEditTodo = () => {
         }))
       setValue('')  
     } 
-
-    // console.log(id);
-    console.log(value);
    
   return (
     <form onSubmit={handleSubmit} className='mb-4 font-primary w-full'>

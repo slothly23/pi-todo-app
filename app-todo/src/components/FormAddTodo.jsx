@@ -14,11 +14,10 @@ const FormAddTodo = () => {
         }))
       setValue('')  
     } 
-
-    console.log(value);
-   
+    
   return (
-    <form onSubmit={handleSubmit} className='mb-4 font-primary w-full'>
+    <>
+     <form onSubmit={handleSubmit} className='mb-4 font-primary w-full'>
         <input type="text" className='outline-none 
         bg-transparent border border-gray-500 p-3 w-[500px] 
          text-white mb-6 rounded placeholder:text-gray-300' 
@@ -29,6 +28,7 @@ const FormAddTodo = () => {
             Add Todo
          </button>
     </form>
+  </>
   )
 }
 
